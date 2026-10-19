@@ -118,13 +118,24 @@
     position:relative;
     width:min(460px,92vw);
     min-height:min(640px,78vh);
-    background:linear-gradient(180deg,var(--pink) 0%,var(--peach) 100%);
     border-radius:300px 300px 0 0;
     padding:92px 32px 64px;
     text-align:center;
     color:var(--burgundy-deep);
     display:flex;flex-direction:column;align-items:center;justify-content:center;
+    overflow:hidden;
   }
+  .arch::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:url('hero.jpeg') center/cover no-repeat;
+    filter:blur(4px) brightness(0.85);
+    transform:scale(1.05);
+    z-index:0;
+    border-radius:inherit;
+  }
+  .arch > *{position:relative;z-index:1;}
   .arch::before{
     content:"";
     position:absolute;
@@ -190,7 +201,7 @@
   .center .lede{margin:0 auto;}
 
   /* ---------- Countdown ---------- */
-  #countdown{background:var(--s-sage);}
+  #countdown{background:var(--burgundy-deep);}
   .clock{
     margin-top:44px;
     display:grid;
@@ -224,7 +235,7 @@
   .clock-note{margin-top:28px;font-family:var(--display);font-style:italic;font-size:1.4rem;color:var(--head);}
 
   /* ---------- Our Story ---------- */
-  #story{background:var(--bg);}
+  #story{background:var(--burgundy-deep);}
   .chapters{margin-top:56px;display:grid;gap:60px;text-align:left;}
   .chapter{display:grid;grid-template-columns:200px minmax(0,1fr);gap:44px;align-items:center;}
   .chapter:nth-child(even){grid-template-columns:minmax(0,1fr) 200px;}
@@ -254,7 +265,7 @@
   }
 
   /* ---------- Gifts ---------- */
-  #gifts{background:var(--s-peach);}
+  #gifts{background:var(--burgundy-deep);}
   .gift-grid{
     margin-top:44px;
     display:grid;
@@ -314,7 +325,7 @@
   .soon{color:var(--muted);font-style:italic;}
 
   /* ---------- Gallery ---------- */
-  #gallery{background:var(--bg);}
+  #gallery{background:var(--burgundy-deep);}
   .frames{
     margin-top:48px;
     display:grid;
@@ -347,7 +358,7 @@
   }
 
   /* ---------- RSVP ---------- */
-  #rsvp{background:var(--s-pink);}
+  #rsvp{background:var(--burgundy-deep);}
   .rsvp-card{
     margin:44px auto 0;
     max-width:620px;
@@ -426,6 +437,116 @@
     .frames{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;}
     .frame:nth-child(even){margin-top:24px;}
   }
+
+
+
+    .eyebrow {
+      font-size: 0.75rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 18px;
+    }
+
+      .gift-details {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .35s ease, padding .35s ease;
+      text-align: left;
+    }
+
+    .gift-details.open {
+      max-height: 120px;
+      padding-top: 16px;
+    }
+
+    .gift-details p {
+      font-size: 0.88rem;
+      margin-bottom: 6px;
+      opacity: 1;
+    }
+
+    .gift-details p span {
+      display: inline-block;
+      width: 110px;
+      color: var(--gold);
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+ .section-head {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+
+    .section-head .eyebrow {
+      margin-bottom: 10px;
+    }
+
+    .section-head h2 {
+      font-size: clamp(2.1rem, 5vw, 3.1rem);
+    }
+
+     .registry-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 26px;
+    }
+
+    
+    .registry-card {
+      background: rgba(163, 127, 127, 0.55);
+      border: 1px solid var(--gold-light);
+      padding: 30px 24px;
+      text-align: center;
+      border-radius: 2px;
+    }
+
+    .registry-card .icon {
+      width: 40px;
+      height: 40px;
+      margin: 0 auto 16px;
+      color: var(--lilac);
+    }
+
+    .registry-card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 8px;
+    }
+
+    .registry-card p {
+      font-size: 0.9rem;
+      opacity: .8;
+      margin-bottom: 18px;
+    }
+
+    .registry-card a.btn {
+      display: inline-block;
+      border: 1px solid var(--burgundy);
+      color: var(--burgundy);
+      padding: 9px 22px;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border-radius: 2px;
+      transition: all .2s ease;
+    }
+
+    .registry-card a.btn:hover {
+      background: var(--burgundy);
+      color: var(--beige);
+    }
+
+    .inner{
+      background:rgba(255,247,243,0.88);
+      padding-bottom: 10px;
+      padding-top: 10px;
+      border-top-left-radius: 60px;
+      border-top-right-radius: 60px;
+    }
+
+
 </style>
 </head>
 <body>
@@ -466,7 +587,6 @@
   <div class="inner">
     <span class="eyebrow reveal">Our story</span>
     <h2 class="reveal">How it <em>began</em></h2>
-    <p class="lede reveal">The road that led Aramide and Busayo to this day, in their own words.</p>
     <div class="chapters">
       <article class="chapter reveal">
         <div class="chapter-art"><span>Photo to come</span></div>
@@ -496,26 +616,28 @@
   </div>
 </section>
 
-<section class="band center" id="gifts">
-  <div class="inner">
-    <span class="eyebrow reveal">With love</span>
-    <h2 class="reveal">Gifts &amp; <em>blessings</em></h2>
-    <p class="lede reveal">Your presence is the greatest gift. If you would like to bless Aramide and Busayo as they begin their life together, here are the ways to do it.</p>
-    <div class="gift-grid reveal" style="text-align:left;">
-      <div class="gift">
-        <h3>Bank transfer</h3>
-        <p>A gift of cash toward their new home.</p>
-        <div id="bankBox"></div>
-      </div>
-      <div class="gift">
-        <h3>Gift registry</h3>
-        <p>Prefer to give something from their wish list? Browse it here.</p>
-        <div id="registryBox"></div>
-      </div>
-    </div>
-  </div>
-</section>
 
+<section id="gift">
+    <div class="section-head">
+      <div class="eyebrow">With love</div>
+      <h2> Gifts</h2>
+    </div>
+    <div class="registry-grid">
+
+      <div class="registry-card">
+        <h3>Cash Gift</h3>
+        <button class="btn" onclick="this.nextElementSibling.classList.toggle('open')">Gift Details</button>
+        <div class="gift-details">
+          <p><span>Account Name</span>Okeofu Peace Amara</p>
+          <p><span>Bank</span>Access Bank</p>
+          <p><span>Account No.</span>1710751912</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  
 <section class="band center" id="gallery">
   <div class="inner">
     <span class="eyebrow reveal">Gallery</span>
@@ -606,36 +728,7 @@
   tick(); setInterval(tick, 1000);
 
   /* Gifts */
-  const bankBox = $("bankBox");
-  if (BANK.accountNumber){
-    const dl = document.createElement("dl");
-    dl.className = "detail";
-    [["Bank",BANK.bank],["Name",BANK.accountName],["Account",BANK.accountNumber]].forEach(([k,v]) => {
-      if (!v) return;
-      const dt = document.createElement("dt"); dt.textContent = k;
-      const dd = document.createElement("dd"); dd.textContent = v;
-      dl.append(dt, dd);
-    });
-    const btn = document.createElement("button");
-    btn.type = "button"; btn.className = "btn ghost"; btn.textContent = "Copy account number";
-    btn.addEventListener("click", async () => {
-      try { await navigator.clipboard.writeText(BANK.accountNumber); btn.textContent = "Copied"; }
-      catch(e){ btn.textContent = "Select and copy above"; }
-      setTimeout(() => btn.textContent = "Copy account number", 2200);
-    });
-    bankBox.append(dl, btn);
-  } else {
-    bankBox.innerHTML = '<p class="soon">Account details coming soon.</p>';
-  }
-  const regBox = $("registryBox");
-  if (REGISTRY_URL){
-    const a = document.createElement("a");
-    a.className = "btn"; a.href = REGISTRY_URL; a.target = "_blank"; a.rel = "noopener";
-    a.textContent = "View registry";
-    regBox.appendChild(a);
-  } else {
-    regBox.innerHTML = '<p class="soon">Registry link coming soon.</p>';
-  }
+ 
 
   /* Gallery: photos if provided, else labelled placeholders */
   const frames = $("frames");

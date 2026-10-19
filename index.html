@@ -18,6 +18,7 @@
 
     /* envelope size: max 460px, 92vw on mobile, never taller than the screen allows */
     --w:min(460px,92vw,calc((100vh - 130px) * .84));
+    --w-laptop:min(640px,96vw,calc((100vh - 80px) * .99));
     --h:calc(var(--w) / 1.32);
     --u:calc(var(--w) / 100);
 
@@ -33,6 +34,9 @@
   }
   @supports (height:100dvh){
     :root{--w:min(460px,92vw,calc((100dvh - 130px) * .84));}
+  }
+  @media(min-width:1024px){
+    :root{--w:var(--w-laptop);}
   }
   @media (prefers-reduced-motion: reduce){
     :root{
@@ -389,7 +393,6 @@
         </svg>
       </button>
 
-      <p class="hint" id="hint">Tap the gold seal to open</p>
     </div>
   </div>
 </main>
