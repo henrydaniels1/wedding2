@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Aramide &amp; Busayo | 5th January 2027</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Figtree:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --burgundy:#6A1B34;
+    --burgundy-deep:#4C1124;
+    --sage:#9DB08B;
+    --pink:#F7D6DE;
+    --peach:#FBD8C3;
+
+    --bg:#FFF7F3;
+    --s-pink:#FBE4E8;
+    --s-peach:#FDE7D8;
+    --s-sage:#DCE5D2;
+    --card:#FFFFFF;
+    --text:#3B2128;
+    --muted:#6F5A5F;
+    --head:#6A1B34;
+    --accent:#52684A;
+    --line:rgba(106,27,52,0.18);
+    --display:'Instrument Serif','Didot',Georgia,serif;
+    --body:'Figtree','Helvetica Neue',Arial,sans-serif;
+
+    box-sizing:border-box;
+    padding-top:env(safe-area-inset-top,0px);
+    padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#2A1219;
+      --s-pink:#35161F;
+      --s-peach:#3A1D1E;
+      --s-sage:#26301F;
+      --card:#3E1D28;
+      --text:#F8E6E6;
+      --muted:#CDB3B6;
+      --head:#F6CDD6;
+      --accent:#B7C9A5;
+      --line:rgba(246,205,214,0.22);
+      color-scheme:dark;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#2A1219;
+    --s-pink:#35161F;
+    --s-peach:#3A1D1E;
+    --s-sage:#26301F;
+    --card:#3E1D28;
+    --text:#F8E6E6;
+    --muted:#CDB3B6;
+    --head:#F6CDD6;
+    --accent:#B7C9A5;
+    --line:rgba(246,205,214,0.22);
+    color-scheme:dark;
+  }
+
+  *,*::before,*::after{box-sizing:inherit;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--body);
+    font-weight:400;
+    font-size:1.02rem;
+    line-height:1.7;
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none;}
+  :focus-visible{outline:2px solid var(--sage);outline-offset:3px;}
+
+  /* ---------- Floating nav ---------- */
+  .nav{
+    position:fixed;
+    top:calc(14px + env(safe-area-inset-top,0px));
+    left:50%;transform:translateX(-50%);
+    z-index:50;
+    display:flex;gap:6px;
+    padding:6px;
+    background:rgba(255,247,243,0.88);
+    backdrop-filter:blur(8px);
+    border:1px solid rgba(106,27,52,0.15);
+    border-radius:999px;
+    max-width:calc(100vw - 24px);
+  }
+  .nav a{
+    font-size:0.74rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    padding:8px 14px;
+    border-radius:999px;
+    color:#4C1124;
+    white-space:nowrap;
+    transition:background .2s ease;
+  }
+  .nav a:hover{background:#F7D6DE;}
+  .nav{overflow-x:auto;scrollbar-width:none;}
+  .nav::-webkit-scrollbar{display:none;}
+  @media(max-width:520px){.nav{gap:2px;}.nav a{padding:8px 8px;font-size:0.64rem;letter-spacing:0.06em;}}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    min-height:100vh;
+    background:
+      radial-gradient(ellipse at 50% 38%, #7C2540 0%, transparent 60%),
+      var(--burgundy-deep);
+    display:flex;align-items:flex-end;justify-content:center;
+    padding:96px 20px 0;
+    overflow:hidden;
+  }
+  .arch{
+    position:relative;
+    width:min(460px,92vw);
+    min-height:min(640px,78vh);
+    background:linear-gradient(180deg,var(--pink) 0%,var(--peach) 100%);
+    border-radius:300px 300px 0 0;
+    padding:92px 32px 64px;
+    text-align:center;
+    color:var(--burgundy-deep);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+  }
+  .arch::before{
+    content:"";
+    position:absolute;
+    inset:14px 14px 0;
+    border:1px solid var(--sage);
+    border-bottom:none;
+    border-radius:290px 290px 0 0;
+    pointer-events:none;
+  }
+  .kicker{
+    font-size:0.72rem;
+    letter-spacing:0.3em;
+    text-transform:uppercase;
+    color:#52684A;
+    margin-bottom:20px;
+  }
+  .couple{
+    font-family:var(--display);
+    font-weight:400;
+    font-size:clamp(3.2rem,12vw,4.8rem);
+    line-height:0.98;
+    color:var(--burgundy);
+  }
+  .couple em{
+    display:block;
+    font-style:italic;
+    font-size:0.5em;
+    color:#52684A;
+    margin:6px 0 4px;
+  }
+  .hero-date{
+    margin-top:28px;
+    font-size:0.86rem;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    color:var(--burgundy-deep);
+  }
+  .hero-venue{margin-top:6px;font-family:var(--display);font-style:italic;font-size:1.4rem;color:var(--burgundy);}
+  .hero-addr{font-size:0.9rem;color:#6F4A52;margin-top:2px;}
+
+  /* ---------- Section shell ---------- */
+  .band{padding:96px 24px;}
+  .inner{max-width:960px;margin:0 auto;}
+  .center{text-align:center;}
+  .eyebrow{
+    font-size:0.72rem;
+    letter-spacing:0.3em;
+    text-transform:uppercase;
+    color:var(--accent);
+    display:block;
+    margin-bottom:14px;
+  }
+  h2{
+    font-family:var(--display);
+    font-weight:400;
+    color:var(--head);
+    font-size:clamp(2.2rem,5.4vw,3.4rem);
+    line-height:1.08;
+    margin-bottom:16px;
+  }
+  h2 em{font-style:italic;}
+  .lede{color:var(--muted);max-width:52ch;}
+  .center .lede{margin:0 auto;}
+
+  /* ---------- Countdown ---------- */
+  #countdown{background:var(--s-sage);}
+  .clock{
+    margin-top:44px;
+    display:grid;
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    gap:clamp(10px,2.5vw,24px);
+    max-width:720px;
+    margin-left:auto;margin-right:auto;
+  }
+  .tick{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:999px 999px 18px 18px;
+    padding:30px 8px 18px;
+  }
+  .tick b{
+    display:block;
+    font-family:var(--display);
+    font-weight:400;
+    font-size:clamp(2.2rem,8vw,3.8rem);
+    line-height:1;
+    color:var(--head);
+  }
+  .tick span{
+    display:block;
+    margin-top:8px;
+    font-size:0.66rem;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    color:var(--muted);
+  }
+  .clock-note{margin-top:28px;font-family:var(--display);font-style:italic;font-size:1.4rem;color:var(--head);}
+
+  /* ---------- Our Story ---------- */
+  #story{background:var(--bg);}
+  .chapters{margin-top:56px;display:grid;gap:60px;text-align:left;}
+  .chapter{display:grid;grid-template-columns:200px minmax(0,1fr);gap:44px;align-items:center;}
+  .chapter:nth-child(even){grid-template-columns:minmax(0,1fr) 200px;}
+  .chapter:nth-child(even) .chapter-art{order:2;}
+  .chapter-art{
+    position:relative;
+    aspect-ratio:3/4;
+    border-radius:999px 999px 14px 14px;
+    border:1px solid var(--line);
+    background:linear-gradient(170deg,var(--pink),var(--peach));
+    display:flex;align-items:flex-end;justify-content:center;
+    overflow:hidden;
+  }
+  .chapter:nth-child(2) .chapter-art{background:linear-gradient(170deg,#DCE5D2,var(--pink));}
+  .chapter:nth-child(3) .chapter-art{background:linear-gradient(170deg,var(--peach),#DCE5D2);}
+  .chapter-art img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;}
+  .chapter-art span{position:relative;font-family:var(--display);font-style:italic;font-size:1.05rem;color:#6A1B34;padding:0 10px 20px;text-align:center;}
+  .chapter .when{display:block;font-size:0.72rem;letter-spacing:0.24em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;}
+  .chapter h3{font-family:var(--display);font-weight:400;font-size:clamp(1.9rem,4vw,2.5rem);line-height:1.1;color:var(--head);margin-bottom:12px;}
+  .chapter p{color:var(--muted);max-width:52ch;}
+  @media(max-width:700px){
+    .chapters{gap:48px;}
+    .chapter,.chapter:nth-child(even){grid-template-columns:minmax(0,1fr);gap:22px;justify-items:center;text-align:center;}
+    .chapter:nth-child(even) .chapter-art{order:0;}
+    .chapter-art{width:170px;}
+    .chapter p{margin:0 auto;}
+  }
+
+  /* ---------- Gifts ---------- */
+  #gifts{background:var(--s-peach);}
+  .gift-grid{
+    margin-top:44px;
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:22px;
+  }
+  .gift{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:20px;
+    padding:34px 30px;
+  }
+  .gift h3{
+    font-family:var(--display);
+    font-weight:400;
+    font-size:1.7rem;
+    color:var(--head);
+    margin-bottom:8px;
+  }
+  .gift p{color:var(--muted);font-size:0.95rem;margin-bottom:18px;}
+  .detail{
+    display:grid;
+    grid-template-columns:auto 1fr;
+    gap:4px 16px;
+    font-size:0.95rem;
+    margin-bottom:20px;
+  }
+  .detail dt{color:var(--muted);font-size:0.74rem;letter-spacing:0.16em;text-transform:uppercase;padding-top:3px;}
+  .detail dd{color:var(--text);font-weight:500;word-break:break-word;}
+  .btn{
+    display:inline-block;
+    background:var(--burgundy);
+    color:#FFF1F3;
+    border:1px solid var(--burgundy);
+    border-radius:999px;
+    padding:12px 28px;
+    font-family:var(--body);
+    font-size:0.76rem;
+    font-weight:500;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    cursor:pointer;
+    transition:background .2s ease,color .2s ease;
+  }
+  .btn:hover{background:transparent;color:var(--burgundy);}
+  .btn.ghost{background:transparent;color:var(--head);border-color:var(--head);}
+  .btn.ghost:hover{background:var(--burgundy);color:#FFF1F3;border-color:var(--burgundy);}
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]) .btn{background:#F6CDD6;color:#3A1020;border-color:#F6CDD6;}
+    :root:not([data-theme="light"]) .btn:hover{background:transparent;color:#F6CDD6;}
+    :root:not([data-theme="light"]) .btn.ghost:hover{background:#F6CDD6;color:#3A1020;}
+  }
+  :root[data-theme="dark"] .btn{background:#F6CDD6;color:#3A1020;border-color:#F6CDD6;}
+  :root[data-theme="dark"] .btn:hover{background:transparent;color:#F6CDD6;}
+  :root[data-theme="dark"] .btn.ghost:hover{background:#F6CDD6;color:#3A1020;}
+  .btn[aria-disabled="true"]{opacity:.55;pointer-events:none;}
+  .soon{color:var(--muted);font-style:italic;}
+
+  /* ---------- Gallery ---------- */
+  #gallery{background:var(--bg);}
+  .frames{
+    margin-top:48px;
+    display:grid;
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    gap:18px;
+    align-items:start;
+  }
+  .frame{
+    position:relative;
+    aspect-ratio:3/4;
+    border-radius:999px 999px 14px 14px;
+    overflow:hidden;
+    border:1px solid var(--line);
+    display:flex;align-items:flex-end;justify-content:center;
+    background:linear-gradient(170deg,var(--pink),var(--peach));
+  }
+  .frame:nth-child(4n+2){background:linear-gradient(170deg,#DCE5D2,var(--pink));}
+  .frame:nth-child(4n+3){background:linear-gradient(170deg,var(--peach),#DCE5D2);}
+  .frame:nth-child(4n+4){background:linear-gradient(170deg,var(--pink),#DCE5D2);}
+  .frame:nth-child(even){margin-top:36px;}
+  .frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;}
+  .frame .cap{
+    position:relative;
+    font-family:var(--display);
+    font-style:italic;
+    font-size:1.05rem;
+    color:#6A1B34;
+    padding:0 12px 22px;
+    text-align:center;
+  }
+
+  /* ---------- RSVP ---------- */
+  #rsvp{background:var(--s-pink);}
+  .rsvp-card{
+    margin:44px auto 0;
+    max-width:620px;
+    background:var(--burgundy-deep);
+    color:#FBE9EC;
+    border-radius:28px;
+    padding:clamp(28px,6vw,52px);
+    text-align:left;
+  }
+  .rsvp-card form{display:grid;gap:20px;}
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+  @media(max-width:560px){.row2{grid-template-columns:1fr;}}
+  label,.legend{
+    display:block;
+    font-size:0.7rem;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    color:#F7C8D2;
+    margin-bottom:8px;
+  }
+  input,select,textarea{
+    width:100%;
+    background:rgba(255,255,255,0.07);
+    border:1px solid rgba(247,200,210,0.35);
+    border-radius:12px;
+    color:#FFF4F5;
+    font-family:var(--body);
+    font-size:1rem;
+    padding:12px 14px;
+    outline:none;
+    transition:border-color .2s ease;
+  }
+  input:focus,select:focus,textarea:focus{border-color:#F7D6DE;}
+  input::placeholder,textarea::placeholder{color:rgba(255,244,245,0.45);}
+  select option{color:#3B2128;}
+  .choices{display:flex;gap:10px;flex-wrap:wrap;}
+  .choices input{position:absolute;opacity:0;width:1px;height:1px;}
+  .choices label{
+    margin:0;
+    cursor:pointer;
+    padding:11px 20px;
+    border-radius:999px;
+    border:1px solid rgba(247,200,210,0.4);
+    font-size:0.8rem;
+    letter-spacing:0.08em;
+    text-transform:none;
+    color:#FBE9EC;
+    transition:background .2s ease,color .2s ease;
+  }
+  .choices input:checked + label{background:var(--pink);color:var(--burgundy-deep);border-color:var(--pink);}
+  .choices input:focus-visible + label{outline:2px solid var(--sage);outline-offset:3px;}
+  .rsvp-card .btn{background:var(--pink);color:var(--burgundy-deep);border-color:var(--pink);justify-self:start;padding:14px 34px;}
+  .rsvp-card .btn:hover{background:transparent;color:var(--pink);}
+  .note{font-size:0.9rem;color:#F7C8D2;min-height:1.4em;}
+
+  footer{
+    background:var(--burgundy-deep);
+    color:#F7D6DE;
+    text-align:center;
+    padding:56px 24px 48px;
+  }
+  footer .names{font-family:var(--display);font-style:italic;font-size:2rem;color:#FBE9EC;}
+  footer p{font-size:0.78rem;letter-spacing:0.22em;text-transform:uppercase;margin-top:8px;opacity:.85;}
+
+  /* ---------- Reveal ---------- */
+  .js .reveal{opacity:0;transform:translateY(14px);transition:opacity .7s ease,transform .7s ease;}
+  .js .reveal.in{opacity:1;transform:none;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    .js .reveal{opacity:1;transform:none;transition:none;}
+  }
+
+  @media(max-width:820px){
+    .band{padding:76px 20px;}
+    .gift-grid{grid-template-columns:minmax(0,1fr);}
+    .frames{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;}
+    .frame:nth-child(even){margin-top:24px;}
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav" aria-label="Sections">
+  <a href="#countdown">Countdown</a>
+  <a href="#story">Story</a>
+  <a href="#gifts">Gifts</a>
+  <a href="#gallery">Gallery</a>
+  <a href="#rsvp">RSVP</a>
+</nav>
+
+<header class="hero">
+  <div class="arch">
+    <div class="kicker">Together with their families</div>
+    <h1 class="couple">Aramide<em>and</em>Busayo</h1>
+    <div class="hero-date">Tuesday, 5th January 2027</div>
+    <div class="hero-venue">Global Harvest</div>
+    <div class="hero-addr" id="venueAddr"></div>
+  </div>
+</header>
+
+<section class="band center" id="countdown">
+  <div class="inner">
+    <span class="eyebrow reveal">Counting down</span>
+    <h2 class="reveal">Until we say <em>"I do"</em></h2>
+    <div class="clock reveal" id="clock" role="timer" aria-live="off">
+      <div class="tick"><b id="cd-d">--</b><span>Days</span></div>
+      <div class="tick"><b id="cd-h">--</b><span>Hours</span></div>
+      <div class="tick"><b id="cd-m">--</b><span>Minutes</span></div>
+      <div class="tick"><b id="cd-s">--</b><span>Seconds</span></div>
+    </div>
+    <div class="clock-note" id="clockNote"></div>
+  </div>
+</section>
+
+<section class="band center" id="story">
+  <div class="inner">
+    <span class="eyebrow reveal">Our story</span>
+    <h2 class="reveal">How it <em>began</em></h2>
+    <p class="lede reveal">The road that led Aramide and Busayo to this day, in their own words.</p>
+    <div class="chapters">
+      <article class="chapter reveal">
+        <div class="chapter-art"><span>Photo to come</span></div>
+        <div>
+          <span class="when">The beginning</span>
+          <h3>How they met</h3>
+          <p>Tell the story of the first meeting: where it happened, who was there, and what each of them remembers most about that day.</p>
+        </div>
+      </article>
+      <article class="chapter reveal">
+        <div class="chapter-art"><span>Photo to come</span></div>
+        <div>
+          <span class="when">Growing together</span>
+          <h3>Falling in love</h3>
+          <p>Share how things grew from friendship into something more: favourite memories, trips, inside jokes, or the moment they both knew.</p>
+        </div>
+      </article>
+      <article class="chapter reveal">
+        <div class="chapter-art"><span>Photo to come</span></div>
+        <div>
+          <span class="when">The question</span>
+          <h3>The proposal</h3>
+          <p>Describe how Busayo asked and how Aramide answered: the setting, the surprise, and the happy tears that followed.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="band center" id="gifts">
+  <div class="inner">
+    <span class="eyebrow reveal">With love</span>
+    <h2 class="reveal">Gifts &amp; <em>blessings</em></h2>
+    <p class="lede reveal">Your presence is the greatest gift. If you would like to bless Aramide and Busayo as they begin their life together, here are the ways to do it.</p>
+    <div class="gift-grid reveal" style="text-align:left;">
+      <div class="gift">
+        <h3>Bank transfer</h3>
+        <p>A gift of cash toward their new home.</p>
+        <div id="bankBox"></div>
+      </div>
+      <div class="gift">
+        <h3>Gift registry</h3>
+        <p>Prefer to give something from their wish list? Browse it here.</p>
+        <div id="registryBox"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band center" id="gallery">
+  <div class="inner">
+    <span class="eyebrow reveal">Gallery</span>
+    <h2 class="reveal">Moments <em>so far</em></h2>
+    <p class="lede reveal">A look at Aramide and Busayo's journey to this day.</p>
+    <div class="frames reveal" id="frames"></div>
+  </div>
+</section>
+
+<section class="band center" id="rsvp">
+  <div class="inner">
+    <span class="eyebrow reveal">Kindly reply</span>
+    <h2 class="reveal">Will you <em>join us?</em></h2>
+    <p class="lede reveal">Let Aramide and Busayo know if you can make it, so they can plan a seat for you.</p>
+
+    <div class="rsvp-card reveal">
+      <form id="rsvpForm">
+        <div>
+          <label for="name">Your full name</label>
+          <input type="text" id="name" placeholder="e.g. Ada Okafor" required autocomplete="name">
+        </div>
+        <div>
+          <span class="legend" id="attLegend">Will you attend?</span>
+          <div class="choices" role="radiogroup" aria-labelledby="attLegend">
+            <input type="radio" name="att" id="yes" value="Joyfully accepts" checked>
+            <label for="yes">Joyfully accept</label>
+            <input type="radio" name="att" id="no" value="Regretfully declines">
+            <label for="no">Regretfully decline</label>
+          </div>
+        </div>
+        <div class="row2">
+          <div>
+            <label for="guests">Number of guests</label>
+            <select id="guests">
+              <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>
+            </select>
+          </div>
+          <div>
+            <label for="phone">Phone (optional)</label>
+            <input type="tel" id="phone" placeholder="So we can reach you" autocomplete="tel">
+          </div>
+        </div>
+        <div>
+          <label for="msg">A message for the couple (optional)</label>
+          <textarea id="msg" rows="3" placeholder="Share a wish or a memory"></textarea>
+        </div>
+        <button type="submit" class="btn">Send my RSVP</button>
+        <div class="note" id="rsvpNote" role="status"></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="names">Aramide &amp; Busayo</div>
+  <p>5th January 2027 · Global Harvest</p>
+</footer>
+
+<script>
+  /* ---- Easy edits: fill these in ---- */
+  const VENUE_ADDRESS   = "";  // e.g. "Full street address, City"
+  const RSVP_WHATSAPP   = "";  // digits with country code, e.g. "2348012345678"
+  const RSVP_EMAIL      = "";  // e.g. "rsvp@example.com"
+  const BANK = { bank:"", accountName:"", accountNumber:"" };
+  const REGISTRY_URL    = "";  // link to a gift registry
+  const PHOTOS = [];           // e.g. [{src:"data:image/jpeg;base64,...", alt:"Engagement"}]
+
+  document.documentElement.classList.add("js");
+  const $ = id => document.getElementById(id);
+
+  /* Venue address */
+  if (VENUE_ADDRESS) $("venueAddr").textContent = VENUE_ADDRESS;
+
+  /* Countdown to 5 January 2027 (viewer's local time) */
+  const target = new Date("2027-01-05T00:00:00").getTime();
+  function tick(){
+    const d = target - Date.now();
+    if (d <= 0){
+      ["d","h","m","s"].forEach(k => $("cd-"+k).textContent = "0");
+      $("clockNote").textContent = "The day has arrived. Congratulations, Aramide and Busayo!";
+      return;
+    }
+    $("cd-d").textContent = Math.floor(d/864e5);
+    $("cd-h").textContent = String(Math.floor(d%864e5/36e5)).padStart(2,"0");
+    $("cd-m").textContent = String(Math.floor(d%36e5/6e4)).padStart(2,"0");
+    $("cd-s").textContent = String(Math.floor(d%6e4/1e3)).padStart(2,"0");
+  }
+  tick(); setInterval(tick, 1000);
+
+  /* Gifts */
+  const bankBox = $("bankBox");
+  if (BANK.accountNumber){
+    const dl = document.createElement("dl");
+    dl.className = "detail";
+    [["Bank",BANK.bank],["Name",BANK.accountName],["Account",BANK.accountNumber]].forEach(([k,v]) => {
+      if (!v) return;
+      const dt = document.createElement("dt"); dt.textContent = k;
+      const dd = document.createElement("dd"); dd.textContent = v;
+      dl.append(dt, dd);
+    });
+    const btn = document.createElement("button");
+    btn.type = "button"; btn.className = "btn ghost"; btn.textContent = "Copy account number";
+    btn.addEventListener("click", async () => {
+      try { await navigator.clipboard.writeText(BANK.accountNumber); btn.textContent = "Copied"; }
+      catch(e){ btn.textContent = "Select and copy above"; }
+      setTimeout(() => btn.textContent = "Copy account number", 2200);
+    });
+    bankBox.append(dl, btn);
+  } else {
+    bankBox.innerHTML = '<p class="soon">Account details coming soon.</p>';
+  }
+  const regBox = $("registryBox");
+  if (REGISTRY_URL){
+    const a = document.createElement("a");
+    a.className = "btn"; a.href = REGISTRY_URL; a.target = "_blank"; a.rel = "noopener";
+    a.textContent = "View registry";
+    regBox.appendChild(a);
+  } else {
+    regBox.innerHTML = '<p class="soon">Registry link coming soon.</p>';
+  }
+
+  /* Gallery: photos if provided, else labelled placeholders */
+  const frames = $("frames");
+  const list = PHOTOS.length ? PHOTOS : Array.from({length:8}, () => ({src:"", alt:"Photo to come"}));
+  list.forEach(p => {
+    const f = document.createElement("div");
+    f.className = "frame";
+    if (p.src){
+      const img = document.createElement("img");
+      img.src = p.src; img.alt = p.alt || ""; img.loading = "lazy";
+      f.appendChild(img);
+    } else {
+      const c = document.createElement("span");
+      c.className = "cap"; c.textContent = p.alt;
+      f.appendChild(c);
+    }
+    frames.appendChild(f);
+  });
+
+  /* RSVP: composes a message and hands it to WhatsApp or email */
+  $("rsvpForm").addEventListener("submit", e => {
+    e.preventDefault();
+    const att = document.querySelector('input[name="att"]:checked').value;
+    const lines = [
+      "RSVP for Aramide & Busayo's wedding (5th January 2027)",
+      "Name: " + $("name").value.trim(),
+      "Response: " + att,
+      "Guests: " + $("guests").value
+    ];
+    if ($("phone").value.trim()) lines.push("Phone: " + $("phone").value.trim());
+    if ($("msg").value.trim()) lines.push("Message: " + $("msg").value.trim());
+    const text = lines.join("\n");
+    const note = $("rsvpNote");
+
+    if (RSVP_WHATSAPP){
+      window.open("https://wa.me/" + RSVP_WHATSAPP.replace(/\D/g,"") + "?text=" + encodeURIComponent(text), "_blank", "noopener");
+      note.textContent = "WhatsApp is opening with your RSVP. Press send to confirm it.";
+    } else if (RSVP_EMAIL){
+      window.location.href = "mailto:" + RSVP_EMAIL + "?subject=" + encodeURIComponent("RSVP: Aramide & Busayo") + "&body=" + encodeURIComponent(text);
+      note.textContent = "Your email app is opening with your RSVP. Press send to confirm it.";
+    } else {
+      note.textContent = "RSVP replies are not switched on yet. Please check back soon.";
+    }
+  });
+
+  /* Reveal on scroll */
+  const reveals = document.querySelectorAll(".reveal");
+  if ("IntersectionObserver" in window){
+    const io = new IntersectionObserver(es => {
+      es.forEach(en => { if (en.isIntersecting){ en.target.classList.add("in"); io.unobserve(en.target); } });
+    }, {threshold:0.12});
+    reveals.forEach(el => io.observe(el));
+  } else {
+    reveals.forEach(el => el.classList.add("in"));
+  }
+</script>
+</body>
+</html>
