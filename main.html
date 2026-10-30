@@ -667,6 +667,7 @@ Trust my baby to show off — and she said a BIG YES!</p>
     <h2 class="reveal">Moments <em>so far</em></h2>
     <p class="lede reveal">A look at Aramide and Busayo's journey to this day.</p>
     <div class="frames reveal" id="frames"></div>
+    <a href="gallery.html" class="btn reveal" style="margin-top:40px;display:inline-block;">View All Photos</a>
   </div>
 </section>
 
@@ -753,21 +754,20 @@ Trust my baby to show off — and she said a BIG YES!</p>
   /* Gifts */
  
 
-  /* Gallery: photos if provided, else labelled placeholders */
+  /* Gallery: show first 3 photos only */
   const frames = $("frames");
-  const list = PHOTOS.length ? PHOTOS : Array.from({length:8}, () => ({src:"", alt:"Photo to come"}));
-  list.forEach(p => {
+  const allPhotos = [
+    {src:"pic1 (1).jpeg", alt:"How they met"},
+    {src:"pic1 (2).jpeg", alt:"Falling in love"},
+    {src:"pic1 (3).jpeg", alt:"The proposal"},
+    {src:"public/IMG_0110.JPG.jpeg", alt:"Memory"}
+  ];
+  allPhotos.forEach(p => {
     const f = document.createElement("div");
     f.className = "frame";
-    if (p.src){
-      const img = document.createElement("img");
-      img.src = p.src; img.alt = p.alt || ""; img.loading = "lazy";
-      f.appendChild(img);
-    } else {
-      const c = document.createElement("span");
-      c.className = "cap"; c.textContent = p.alt;
-      f.appendChild(c);
-    }
+    const img = document.createElement("img");
+    img.src = p.src; img.alt = p.alt; img.loading = "lazy";
+    f.appendChild(img);
     frames.appendChild(f);
   });
 
