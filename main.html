@@ -3,10 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Aramide &amp; Busayo | 9th January 2027</title>
+<title>Aramide &amp; Busayo | 8th January 2027</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Figtree:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+<!-- public key -->
+<script>emailjs.init("me4KfAGz9xtPDaVAb");</script> 
+
 
 <style>
   :root{
@@ -566,7 +571,7 @@
   <div class="arch">
     <div class="kicker">Together with their families</div>
     <h1 class="couple">Aramide<em>and</em>Busayo</h1>
-    <div class="hero-date">Saturday, 9th January 2027</div>
+    <div class="hero-date">Friday, 8th January 2027</div>
     <div class="hero-venue">Global Harvest</div>
     <div class="hero-addr" id="venueAddr"></div>
   </div>
@@ -684,6 +689,10 @@ Trust my baby to show off — and she said a BIG YES!</p>
           <input type="text" id="name" placeholder="e.g. Ada Okafor" required autocomplete="name">
         </div>
         <div>
+          <label for="email">Your email</label>
+          <input type="email" id="email" placeholder="e.g. ada@example.com" required autocomplete="email">
+        </div>
+        <div>
           <span class="legend" id="attLegend">Will you attend?</span>
           <div class="choices" role="radiogroup" aria-labelledby="attLegend">
             <input type="radio" name="att" id="yes" value="Joyfully accepts" checked>
@@ -717,7 +726,7 @@ Trust my baby to show off — and she said a BIG YES!</p>
 
 <footer>
   <div class="names">Aramide &amp; Busayo</div>
-  <p>9th January 2027 · Global Harvest</p>
+  <p>8th January 2027 · Global Harvest</p>
 </footer>
 
 <script>
@@ -736,7 +745,7 @@ Trust my baby to show off — and she said a BIG YES!</p>
   if (VENUE_ADDRESS) $("venueAddr").textContent = VENUE_ADDRESS;
 
   /* Countdown to 5 January 2027 (viewer's local time) */
-  const target = new Date("2027-01-05T00:00:00").getTime();
+  const target = new Date("2027-01-08T00:00:00").getTime();
   function tick(){
     const d = target - Date.now();
     if (d <= 0){
@@ -757,8 +766,8 @@ Trust my baby to show off — and she said a BIG YES!</p>
   /* Gallery: show first 3 photos only */
   const frames = $("frames");
   const allPhotos = [
-    {src:"pic1 (1).jpeg", alt:"How they met"},
-    {src:"pic1 (2).jpeg", alt:"Falling in love"},
+    {src:"public/IMG_1490.jpg", alt:"How they met"},
+    {src:"public/IMG_0031.jpg", alt:"Falling in love"},
     {src:"pic1 (3).jpeg", alt:"The proposal"},
     {src:"public/IMG_0110.JPG.jpeg", alt:"Memory"}
   ];
@@ -771,30 +780,30 @@ Trust my baby to show off — and she said a BIG YES!</p>
     frames.appendChild(f);
   });
 
-  /* RSVP: composes a message and hands it to WhatsApp or email */
+  /* RSVP: sends via EmailJS */
   $("rsvpForm").addEventListener("submit", e => {
     e.preventDefault();
-    const att = document.querySelector('input[name="att"]:checked').value;
-    const lines = [
-      "RSVP for Aramide & Busayo's wedding (9th January 2027)",
-      "Name: " + $("name").value.trim(),
-      "Response: " + att,
-      "Guests: " + $("guests").value
-    ];
-    if ($("phone").value.trim()) lines.push("Phone: " + $("phone").value.trim());
-    if ($("msg").value.trim()) lines.push("Message: " + $("msg").value.trim());
-    const text = lines.join("\n");
+    const btn  = $("rsvpForm").querySelector("button[type='submit']");
     const note = $("rsvpNote");
+    btn.setAttribute("aria-disabled", "true");
+    btn.textContent = "Sending…";
+    note.textContent = "";
 
-    if (RSVP_WHATSAPP){
-      window.open("https://wa.me/" + RSVP_WHATSAPP.replace(/\D/g,"") + "?text=" + encodeURIComponent(text), "_blank", "noopener");
-      note.textContent = "WhatsApp is opening with your RSVP. Press send to confirm it.";
-    } else if (RSVP_EMAIL){
-      window.location.href = "mailto:" + RSVP_EMAIL + "?subject=" + encodeURIComponent("RSVP: Aramide & Busayo") + "&body=" + encodeURIComponent(text);
-      note.textContent = "Your email app is opening with your RSVP. Press send to confirm it.";
-    } else {
-      note.textContent = "RSVP replies are not switched on yet. Please check back soon.";
-    }
+    emailjs.send("service_vj0hb4f", "template_n123bp1", {
+      from_name : $("name").value.trim(),
+      email     : $("email").value.trim(),
+      attending : document.querySelector('input[name="att"]:checked').value,
+      guests    : $("guests").value,
+      message   : $("msg").value.trim()
+    }).then(() => {
+      note.textContent = "🎉 Your RSVP has been sent! Aramide & Busayo can't wait to see you.";
+      $("rsvpForm").reset();
+    }).catch(() => {
+      note.textContent = "Something went wrong. Please try again or contact the couple directly.";
+    }).finally(() => {
+      btn.removeAttribute("aria-disabled");
+      btn.textContent = "Send my RSVP";
+    });
   });
 
   /* Floating petals — site-wide */
