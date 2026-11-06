@@ -408,7 +408,7 @@
   .frames{
     margin-top:48px;
     display:grid;
-    grid-template-columns:repeat(4,minmax(0,1fr));
+    grid-template-columns:repeat(3,minmax(0,1fr));
     gap:18px;
     align-items:start;
   }
@@ -572,7 +572,7 @@
     <div class="kicker">Together with their families</div>
     <h1 class="couple">Aramide<em>and</em>Busayo</h1>
     <div class="hero-date">Friday, 8th January 2027</div>
-    <div class="hero-venue">Global Harvest</div>
+    <!-- <div class="hero-venue">Global Harvest</div> -->
     <div class="hero-addr" id="venueAddr"></div>
   </div>
 </header>
@@ -726,7 +726,7 @@ Trust my baby to show off — and she said a BIG YES!</p>
 
 <footer>
   <div class="names">Aramide &amp; Busayo</div>
-  <p>8th January 2027 · Global Harvest</p>
+  <p>8th January 2027</p>
 </footer>
 
 <script>
@@ -768,8 +768,8 @@ Trust my baby to show off — and she said a BIG YES!</p>
   const allPhotos = [
     {src:"public/IMG_1490.jpg", alt:"How they met"},
     {src:"public/IMG_0031.jpg", alt:"Falling in love"},
-    {src:"pic1 (3).jpeg", alt:"The proposal"},
-    {src:"public/IMG_0110.JPG.jpeg", alt:"Memory"}
+    {src:"pic1 (3).jpeg", alt:"The proposal"}
+    // {src:"public/IMG_0110.JPG.jpeg", alt:"Memory"}
   ];
   allPhotos.forEach(p => {
     const f = document.createElement("div");
